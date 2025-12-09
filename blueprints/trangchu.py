@@ -10,6 +10,7 @@ html_content = """
     <meta name="description" content="Trang web bán hàng chuyên nghiệp với sản phẩm chất lượng và dịch vụ tận tâm.">
     <title>Trang chủ - Bánh Kẹo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
