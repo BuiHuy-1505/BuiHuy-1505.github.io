@@ -68,10 +68,16 @@ def vnpay_return():
     if vnp_SecureHash != verify_hash:
         return "⚠️ Sai checksum!"
 
-    user_id = session.get('user_id')   
-    order_id = inputData.get('vnp_OrderInfo').split()[-1]  
+    user_id = session.get('user_id')
+    
+    if not user_id:
+        return redirect(url_for('dangnhap'))
+
+    order_info = inputData.get('vnp_OrderInfo', '')
+    order_id = order_info.split(':')[-1]
 
     return redirect(url_for('donhang.xem_donhang'))
+
 
 @thanhtoan_bp.route('/thanhtoan')
 def thanhtoan():

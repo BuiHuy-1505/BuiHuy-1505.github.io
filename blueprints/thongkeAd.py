@@ -95,8 +95,8 @@ def index():
     # Tính lợi nhuận và tỷ lệ theo tháng
     for m in monthly_stats:
         month_num = m['month']
-        expense = expense_by_month.get(month_num, 0)
-        revenue = m['total_revenue_month'] or 0
+        revenue = float(m['total_revenue_month'] or 0)
+        expense = float(expense_by_month.get(month_num, 0) or 0)
         profit = revenue - expense
         percent = (profit / expense * 100) if expense > 0 else 0
         m['total_expense'] = expense
@@ -106,8 +106,8 @@ def index():
     # Tính lợi nhuận và tỷ lệ theo năm
     for y in yearly_stats:
         year_num = y['year']
-        expense = expense_by_year.get(year_num, 0)
-        revenue = y['total_revenue_year'] or 0
+        revenue = float(y['total_revenue_year'] or 0)
+        expense = float(expense_by_year.get(year_num, 0) or 0)
         profit = revenue - expense
         percent = (profit / expense * 100) if expense > 0 else 0
         y['total_expense'] = expense
@@ -115,13 +115,13 @@ def index():
         y['profit_percent'] = percent
 
     # Tổng hợp lãi theo tháng
-    total_monthly_profit = sum(m['profit'] for m in monthly_stats)
-    total_monthly_expense = sum(m['total_expense'] for m in monthly_stats)
+    total_monthly_profit = sum(float(m['profit']) for m in monthly_stats)
+    total_monthly_expense = sum(float(m['total_expense']) for m in monthly_stats)
     avg_monthly_percent = (total_monthly_profit / total_monthly_expense * 100) if total_monthly_expense > 0 else 0
 
     # Tổng hợp lãi theo năm
-    total_yearly_profit = sum(y['profit'] for y in yearly_stats)
-    total_yearly_expense = sum(y['total_expense'] for y in yearly_stats)
+    total_yearly_profit = sum(float(y['profit']) for y in yearly_stats)
+    total_yearly_expense = sum(float(y['total_expense']) for y in yearly_stats)
     avg_yearly_percent = (total_yearly_profit / total_yearly_expense * 100) if total_yearly_expense > 0 else 0
 
     db.close()
